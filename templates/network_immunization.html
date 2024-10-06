@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Immunization</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Network Immunization</h1>
+    <button id="runImmunization">Run Immunization</button>
+    <h2>Results:</h2>
+    <pre id="results"></pre>
+    <h2>Graph:</h2>
+    <img id="graphImage" src="" alt="Graph Image">
+    <script>
+        $(document).ready(function(){
+            $("#runImmunization").click(function(){
+                $.post("/run-immunization", function(data){
+                    $("#results").text(data.results);
+                    $("#graphImage").attr("src", "data:image/png;base64," + data.graph_image);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
